@@ -225,7 +225,7 @@ playTone = (frequency, type, duration) => {
 	}
 	g.connect(context.destination);
 	o.start(0);
-	g.gain.exponentialRampToValueAtTime(0.0001,context.currentTime + duration);
+	g.gain.setTargetAtTime(0.0, context.currentTime + duration, 0.1);
 }
 
 //This function helps complete chords and should not be used by itself
@@ -237,7 +237,7 @@ completeChord = (frequency, type, duration) => {
 	osc.frequency.value = frequency;
 	gn.connect(context.destination);
 	osc.start(0);
-	gn.gain.exponentialRampToValueAtTime(0.0001,context.currentTime + duration);
+	gn.gain.setTargetAtTime(0.0, context.currentTime + duration, 0.1);
 }
 
 
@@ -257,7 +257,7 @@ for (var i = 3; i < arguments.length; i += 2) {
 	oscillatorNode.frequency.exponentialRampToValueAtTime(arguments[i], context.currentTime + arguments[i+1]);
 }
 	gainNode.gain.setValueAtTime(0.3, context.currentTime);
-	gainNode.gain.exponentialRampToValueAtTime(0.1, context.currentTime +  0.5);
+	gainNode.gain.setTargetAtTime(0.0, context.currentTime + 0.5, 0.1);
   
 	oscillatorNode.connect(gainNode);
 	gainNode.connect(context.destination);
