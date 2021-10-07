@@ -225,7 +225,7 @@ playTone = (frequency, type, duration) => {
 	}
 	g.connect(context.destination);
 	o.start(0);
-	g.gain.setTargetAtTime(0.0, context.currentTime + duration, 0.1);
+	g.gain.setTargetAtTime(0.0, context.currentTime, duration / 4);
 }
 
 //This function helps complete chords and should not be used by itself
@@ -237,7 +237,7 @@ completeChord = (frequency, type, duration) => {
 	osc.frequency.value = frequency;
 	gn.connect(context.destination);
 	osc.start(0);
-	gn.gain.setTargetAtTime(0.0, context.currentTime + duration, 0.1);
+	gn.gain.setTargetAtTime(0.0, context.currentTime, duration / 4);
 }
 
 
